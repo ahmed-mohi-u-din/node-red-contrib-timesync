@@ -1,0 +1,116 @@
+[
+    {
+        "id": "787750fd1e6f90f7",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 520,
+                "y": 220,
+                "wires": [
+                    {
+                        "id": "82ed1eea2d5399eb",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "IP",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "PORT",
+                "type": "num",
+                "value": ""
+            },
+            {
+                "name": "TIME",
+                "type": "num",
+                "value": ""
+            }
+        ],
+        "meta": {
+            "module": "node-red-contrib-timesync"
+        },
+        "color": "#DDAA99"
+    },
+    {
+        "id": "82ed1eea2d5399eb",
+        "type": "udp in",
+        "z": "787750fd1e6f90f7",
+        "name": "",
+        "iface": "",
+        "port": "${PORT}",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a973a1b3c6fc83e9",
+        "type": "inject",
+        "z": "787750fd1e6f90f7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "${TIME}",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "ec2a914ec92eb7cd"
+            ]
+        ]
+    },
+    {
+        "id": "ec2a914ec92eb7cd",
+        "type": "udp out",
+        "z": "787750fd1e6f90f7",
+        "name": "",
+        "addr": "${IP}",
+        "iface": "",
+        "port": "${PORT}",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4d43db1705f485e4",
+        "type": "subflow:787750fd1e6f90f7",
+        "z": "487099c6e08dfb4c",
+        "name": "",
+        "x": 240,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    }
+]
